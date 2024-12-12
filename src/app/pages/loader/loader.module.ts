@@ -7,16 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { LoaderPageRoutingModule } from './loader-routing.module';
 
 import { LoaderPage } from './loader.page';
-import { FolderPageModule } from 'src/app/folder/folder.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    LoaderPageRoutingModule,
-    FolderPageModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, LoaderPageRoutingModule],
   declarations: [LoaderPage],
 })
 export class LoaderPageModule {}
