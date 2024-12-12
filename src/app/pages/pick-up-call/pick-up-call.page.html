@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="success">
+        <ion-buttons slot="start">
+            <ion-back-button text="">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title>Pick Up Call</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+    <img src="assets/jpg/mapPlaceholder.jpg" alt="Map" class="img-center">
+    <ion-card>
+        <ion-card-content>
+            <ion-card-title>Call Details</ion-card-title>
+            <ion-card-subtitle>Call ID: 123456</ion-card-subtitle>
+            <ion-card-subtitle>Call Time: 12:00 PM</ion-card-subtitle>
+            <ion-card-subtitle>Call Location: 1234 Main St, City, State, Zip</ion-card-subtitle>
+            <ion-card-subtitle>Call Type: Emergency</ion-card-subtitle>
+            <ion-card-subtitle>Call Status: Pending</ion-card-subtitle>
+            <ion-card-subtitle>Call Priority: High</ion-card-subtitle>
+            <ion-card-subtitle>Call Description: This is a test call description.</ion-card-subtitle>
+        </ion-card-content>
+    </ion-card>
+    <ion-list>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Time</ion-label>
+            <ion-datetime displayFormat="h:mm A" placeholder="Select Time"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Location</ion-label>
+            <ion-input type="text" placeholder="Enter Location"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Notes</ion-label>
+            <ion-textarea placeholder="Enter Notes"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Status</ion-label>
+            <ion-select placeholder="Select Status">
+                <ion-select-option value="1">Pending</ion-select-option>
+                <ion-select-option value="2">In Progress</ion-select-option>
+                <ion-select-option value="3">Completed</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Priority</ion-label>
+            <ion-select placeholder="Select Priority">
+                <ion-select-option value="1">Low</ion-select-option>
+                <ion-select-option value="2">Medium</ion-select-option>
+                <ion-select-option value="3">High</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Type</ion-label>
+            <ion-select placeholder="Select Type">
+                <ion-select-option value="1">Emergency</ion-select-option>
+                <ion-select-option value="2">Non-Emergency</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Reason</ion-label>
+            <ion-select placeholder="Select Reason">
+                <ion-select-option value="1">Medical</ion-select-option>
+                <ion-select-option value="2">Mental Health</ion-select-option>
+                <ion-select-option value="3">Substance Abuse</ion-select-option>
+                <ion-select-option value="4">Other</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Pick Up Destination</ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-button expand="block" color="success" routerLink="/pick-up-destination">Create pick up call</ion-button>
+</ion-content>
