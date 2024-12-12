@@ -5,12 +5,27 @@
 </ion-header>
 <ion-content [fullscreen]="true">
     <ion-card>
+        <ion-radio-group>
+            <ion-list-header>
+                <ion-label>Register As</ion-label>
+            </ion-list-header>
+            <ion-item>
+                <ion-label>I want to BUY</ion-label>
+                <ion-radio slot="start" value="customer" slot="start"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>I want to SELL</ion-label>
+                <ion-radio slot="start" value="partner" slot="start"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-card>
+    <ion-card>
         <ion-card-header>
-            <ion-card-title>User Information</ion-card-title>
+            <ion-card-title>Contact Information</ion-card-title>
         </ion-card-header>
         <ion-card-content>
             <ion-item>
-                <ion-label position="floating">Username</ion-label>
+                <ion-label position="floating">Name</ion-label>
                 <ion-input type="text"></ion-input>
             </ion-item>
             <ion-item>
@@ -25,7 +40,46 @@
                 <ion-label position="floating">Confirm Password</ion-label>
                 <ion-input type="password"></ion-input>
             </ion-item>
-            <ion-button expand="full" type="submit">Register</ion-button>
+            <ion-item>
+                <ion-label position="floating">Phone number</ion-label>
+                <ion-input type="tel"></ion-input>
+            </ion-item>
         </ion-card-content>
     </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Address Information</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item>
+                <ion-label position="floating">Address</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Number</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Neighbourhood</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Complement</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">City</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">State</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Zip code</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <ion-button expand="block" color="primary" size="full">Register</ion-button>
 </ion-content>
