@@ -19,28 +19,7 @@
             </p>
         </ion-label>
     </ion-list>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>Last pickup call</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-item lines="nones">
-                <ion-icon name="hourglass-outline"></ion-icon>
-                <ion-label>
-                    Yesterday
-                    <p>29/10/2024 14:02:22</p>
-                </ion-label>
-            </ion-item>
-            <ion-item lines="nones">
-                <ion-icon name="location-outline"></ion-icon>
-                <ion-label>
-                    Address
-                    <p>Av. Paulista, 1000</p>
-                </ion-label>
-            </ion-item>
-            <ion-button size="full" color="success" fill="none">See all</ion-button>
-        </ion-card-content>
-    </ion-card>
+    <app-pickup-call-card></app-pickup-call-card>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button color="success">
             <ion-icon name="add"></ion-icon>
