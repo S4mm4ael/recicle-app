@@ -4,78 +4,29 @@
     </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-    <app-pickup-call-card></app-pickup-call-card>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>Last pickup call</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-item lines="nones">
-                <ion-icon name="hourglass-outline" color="warning" slot="start"></ion-icon>
-                <ion-label>
-                    On hold
-                    <p>29/10/2024 14:02:22</p>
-                </ion-label>
-            </ion-item>
-            <ion-item lines="nones">
-                <ion-icon name="location-outline" slot="start"></ion-icon>
-                <ion-label>
-                    Address
-                    <p>Av. Paulista, 1000</p>
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <p>Two small packages</p>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>One more pickup call</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-item lines="nones">
-                <ion-icon name="archive-outline" color="secondary" slot="start"></ion-icon>
-                <ion-label>
-                    In progress
-                    <p>27/10/2024 10:12:62</p>
-                </ion-label>
-            </ion-item>
-            <ion-item lines="nones">
-                <ion-icon name="location-outline" slot="start"></ion-icon>
-                <ion-label>
-                    Address
-                    <p>Str.Simple 21/11</p>
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <p>Three medium packages</p>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>Very last pickup call</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-item lines="nones">
-                <ion-icon name="checkmark-circle-outline" color="success" slot="start"></ion-icon>
-                <ion-label>
-                    Finished
-                    <p>29/10/2024 14:02:22</p>
-                </ion-label>
-            </ion-item>
-            <ion-item lines="nones">
-                <ion-icon name="location-outline" slot="start" color="primary"></ion-icon>
-                <ion-label>
-                    Address
-                    <p>Boulevar Test 12-33</p>
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <p>Two small packages</p>
-            </ion-item>
-            <p class="money">$15,00</p>
-        </ion-card-content>
-    </ion-card>
+    <app-pickup-call-card
+        [hasHeader]="true"
+        [hasFooter]="true"
+        status="hold"
+        updatedAt="25/04/2024"
+        createdAt="24/04/2021"
+        notes="We have tree bags that are full, one with plastic and the other with glasses"
+    ></app-pickup-call-card>
+    <app-pickup-call-card
+        [hasHeader]="false"
+        [hasFooter]="true"
+        status="processing"
+        updatedAt="24/04/2024"
+        created="23/04/2024"
+        notes="We have two bags that are full, one with plastic and the other with glasses"
+    ></app-pickup-call-card>
+    <app-pickup-call-card
+        [hasHeader]="false"
+        [hasFooter]="true"
+        status="completed"
+        updatedAt="14/04/2024"
+        created="13/04/2024"
+        notes="We have two bags that are full, one with plastic and the other with glasses"
+        amount="100"
+    ></app-pickup-call-card>
 </ion-content>
