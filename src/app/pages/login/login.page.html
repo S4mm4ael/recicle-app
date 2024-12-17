@@ -1,41 +1,76 @@
 <ion-content [fullscreen]="true">
-    <div class="flex-center">
-      <form [formGroup]="form" (ngSubmit)="login()">
-        <ion-card>
-            <ion-card-header>
-                <ion-card-title color="success">Recicle</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-item>
-                    <ion-input label="Email" labelPlacement="floating" placeholder="Enter email" formContolName="email"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input
-                        label="Password"
-                        type="password"
-                        labelPlacement="floating"
-                        placeholder="Enter Password"
-                        formContolName="password"
-                    ></ion-input>
-                </ion-item>
-                <ion-button color="dark" fill="clear" size="full">Forgot password?</ion-button>
-                <ion-button
-                    color="success"
-                    expand="block"
-                    routerLink="/home"
-                    size="full"
-                    (click)="login()"
-                >Login</ion-button>
-                <ion-button
-                    color="success"
-                    expand="block"
-                    routerLink="/home"
-                    size="full"
-                    fill="clear"
-                    (click)="register()"
-                >Register</ion-button>
-            </ion-card-content>
-        </ion-card>
-      </form>
-    </div>
+  <div class="flex-center">
+    <form [formGroup]="form">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="success">Recicle</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-input
+              label="Email"
+              labelPlacement="floating"
+              placeholder="Enter email"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+          <ion-label
+            color="danger"
+            *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['required']"
+            >Email is mandatory</ion-label
+          >
+          <ion-label
+            color="danger"
+            *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['email']"
+            >Email is invalid</ion-label
+          >
+          <ion-item>
+            <ion-input
+              label="Password"
+              type="password"
+              labelPlacement="floating"
+              placeholder="Enter Password"
+              formControlName="password"
+            ></ion-input>
+          </ion-item>
+          <ion-label
+            color="danger"
+            *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required']"
+            >Password is mandatory</ion-label
+          >
+          <ion-label
+            color="danger"
+            *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['password']"
+            >Password is invalid</ion-label
+          >
+          <ion-button
+            color="dark"
+            fill="clear"
+            size="full"
+            disabled="!form.get('email').valid"
+            >Forgot password?</ion-button
+          >
+          <ion-button
+            color="success"
+            expand="block"
+            routerLink="/home"
+            size="full"
+            (click)="login()"
+            disabled="{{!form.valid}}"
+            >Login</ion-button
+          >
+          <ion-button
+            color="success"
+            expand="block"
+            routerLink="/home"
+            size="full"
+            fill="clear"
+            (click)="register()"
+            disabled="!form.get('email').valid"
+            >Register</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </form>
+  </div>
 </ion-content>

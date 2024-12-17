@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder) {}
   ngOnInit() {
