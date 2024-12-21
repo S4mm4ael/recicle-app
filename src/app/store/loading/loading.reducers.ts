@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { hide, show } from './loading.actions';
 import { LoadingState } from './LoadingState';
 
@@ -14,6 +14,6 @@ const reducer = createReducer(
   })
 );
 
-export function loadingReducer(state: LoadingState, action) {
+export function loadingReducer(state: LoadingState, action: Action) {
   return reducer(state, action);
 }
