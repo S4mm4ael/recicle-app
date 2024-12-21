@@ -14,16 +14,7 @@
               formControlName="email"
             ></ion-input>
           </ion-item>
-          <ion-label
-            color="danger"
-            *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['required']"
-            >Email is mandatory</ion-label
-          >
-          <ion-label
-            color="danger"
-            *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['email']"
-            >Email is invalid</ion-label
-          >
+            <app-error-message [message]="form.get('email')?.touched && form.get('email')?.errors?.['required'] ? 'Email is mandatory' : form.get('email')?.errors?.['email'] ? 'Email is invalid' : ''"></app-error-message>
           <ion-item>
             <ion-input
               label="Password"
@@ -33,16 +24,7 @@
               formControlName="password"
             ></ion-input>
           </ion-item>
-          <ion-label
-            color="danger"
-            *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required']"
-            >Password is mandatory</ion-label
-          >
-          <ion-label
-            color="danger"
-            *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['password']"
-            >Password is invalid</ion-label
-          >
+          <app-error-message [message]="form.get('password')?.touched && form.get('password')?.errors?.['required'] ? 'Password is mandatory' : ''"></app-error-message>
           <ion-button
             color="dark"
             fill="clear"
