@@ -16,7 +16,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    AppStoreModule,
+    ...AppStoreModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
