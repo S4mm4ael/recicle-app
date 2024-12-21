@@ -11,36 +11,33 @@
               label="Email"
               labelPlacement="floating"
               placeholder="Enter email"
-              formControlName="email"
-            ></ion-input>
+              formControlName="email"></ion-input>
           </ion-item>
-            <app-error-message [message]="form.get('email')?.touched && form.get('email')?.errors?.['required'] ? 'Email is mandatory' : form.get('email')?.errors?.['email'] ? 'Email is invalid' : ''"></app-error-message>
+          <app-error-message [form]="form.get('email')" error="required"
+            message="Email is invalid"></app-error-message>
           <ion-item>
             <ion-input
               label="Password"
               type="password"
               labelPlacement="floating"
               placeholder="Enter Password"
-              formControlName="password"
-            ></ion-input>
+              formControlName="password"></ion-input>
           </ion-item>
-          <app-error-message [message]="form.get('password')?.touched && form.get('password')?.errors?.['required'] ? 'Password is mandatory' : ''"></app-error-message>
+          <app-error-message *ngIf="form?.get('password')"
+            [form]="form.get('password')" error="required"
+            message="Password is invalid"></app-error-message>
           <ion-button
             color="dark"
             fill="clear"
             size="full"
-            disabled="!form.get('email').valid"
-            >Forgot password?</ion-button
-          >
+            disabled="!form.get('email').valid">Forgot password?</ion-button>
           <ion-button
             color="success"
             expand="block"
             routerLink="/home"
             size="full"
             (click)="login()"
-            disabled="{{!form.valid}}"
-            >Login</ion-button
-          >
+            disabled="{{!form.valid}}">Login</ion-button>
           <ion-button
             color="success"
             expand="block"
@@ -48,9 +45,7 @@
             size="full"
             fill="clear"
             (click)="register()"
-            disabled="!form.get('email').valid"
-            >Register</ion-button
-          >
+            disabled="!form.get('email').valid">Register</ion-button>
         </ion-card-content>
       </ion-card>
     </form>
