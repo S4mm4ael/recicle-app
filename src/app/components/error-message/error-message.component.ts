@@ -12,9 +12,7 @@ export class ErrorMessageComponent implements OnInit {
   @Input() message!: string;
 
   constructor() {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnInit(): void {}
 
   shouldShow() {
     if (this.form?.touched && this.form.errors?.[this.error]) {

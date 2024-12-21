@@ -23,9 +23,8 @@
               placeholder="Enter Password"
               formControlName="password"></ion-input>
           </ion-item>
-          <app-error-message *ngIf="form?.get('password')"
-            [form]="form.get('password')" error="required"
-            message="Password is invalid"></app-error-message>
+          <app-error-message [form]="form.get('password')" error="required"
+          message="Password is invalid"></app-error-message>
           <ion-button
             color="dark"
             fill="clear"
