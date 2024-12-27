@@ -1,3 +1,4 @@
+import { App } from '@capacitor/app';
 import { LoginState } from './LoginState';
 import {
   recoverPasswordSuccess,
@@ -6,14 +7,9 @@ import {
 } from './login.actions';
 import { createReducer, on } from '@ngrx/store';
 import { Action } from '@ngrx/store';
+import { AppInitialState } from '../AppInitialState';
 
-const initialState: LoginState = {
-  error: null,
-  isRecoveringPassword: false,
-  isRecoveredPassword: false,
-  isLoggingIn: false,
-  isLoggedIn: false,
-};
+const initialState: LoginState = AppInitialState.login;
 
 const reducer = createReducer(
   initialState,

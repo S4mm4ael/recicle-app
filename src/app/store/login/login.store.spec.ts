@@ -1,15 +1,11 @@
+import { App } from '@capacitor/app';
 import { recoverPassword, recoverPasswordSuccess } from './login.actions';
 import { loginReducer } from './login.reducers';
+import { AppInitialState } from '../AppInitialState';
 
 describe('LoginStore', () => {
   it('Recover Password', () => {
-    const initialState = {
-      error: null,
-      isRecoveringPassword: false,
-      isRecoveredPassword: false,
-      isLoggingIn: false,
-      isLoggedIn: false,
-    };
+    const initialState = AppInitialState.login;
     const newState = loginReducer(initialState, recoverPassword());
     expect(newState).toEqual({
       ...initialState,
@@ -20,11 +16,8 @@ describe('LoginStore', () => {
   });
   it('Recover Password Success', () => {
     const initialState = {
-      error: null,
-      isRecoveringPassword: false,
+      ...AppInitialState.login,
       isRecoveredPassword: true,
-      isLoggingIn: false,
-      isLoggedIn: false,
     };
     const newState = loginReducer(initialState, recoverPasswordSuccess());
     expect(newState).toEqual({
@@ -36,11 +29,8 @@ describe('LoginStore', () => {
   });
   it('Recover Password Fail', () => {
     const initialState = {
-      error: null,
-      isRecoveringPassword: false,
+      ...AppInitialState.login,
       isRecoveredPassword: true,
-      isLoggingIn: false,
-      isLoggedIn: false,
     };
     const error = { message: 'Error' };
     const newState = loginReducer(initialState, recoverPasswordSuccess());
