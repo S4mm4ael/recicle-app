@@ -19,17 +19,21 @@ const reducer = createReducer(
   initialState,
   on(recoverPassword, (state) => ({
     ...state,
+    error: null,
+    isRecoveredPassword: false,
     isRecoveringPassword: true,
   })),
   on(recoverPasswordSuccess, (state) => ({
     ...state,
+    error: null,
     isRecoveringPassword: false,
     isRecoveredPassword: true,
   })),
   on(recoverPasswordFail, (state, { error }) => ({
     ...state,
-    isRecoveringPassword: false,
     error,
+    isRecoveredPassword: false,
+    isRecoveringPassword: false,
   }))
 );
 
