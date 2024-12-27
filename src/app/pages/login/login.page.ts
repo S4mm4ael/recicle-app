@@ -3,7 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppState } from 'src/app/store/AppState';
 import { Store } from '@ngrx/store';
-import { show, hide } from '../../store/loading/loading.actions';
+import {
+  recoverPassword,
+  recoverPasswordFail,
+  recoverPasswordSuccess,
+} from 'src/app/store/login/login.actions';
+import { show, hide } from 'src/app/store/loading/loading.actions';
+import { ToastController } from '@ionic/angular';
+import { LoginState } from 'src/app/store/login/LoginState';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +24,9 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private toastController: ToastController,
+    private authService: AuthService
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -25,12 +35,40 @@ export class LoginPage implements OnInit {
     });
   }
 
-  forgotEmailPassword() {
-    this.store.dispatch(show());
+  private onIsRecoveringPassword(loginState: LoginState) {
+    if (loginState.isRecoveringPassword) {
+      this.store.dispatch(show());
+      this.authService
+        .recoverEmailPassword(this.form.get('email')?.value)
+        .subscribe(
+          () => {
+            this.store.dispatch(recoverPasswordSuccess());
+          },
+          (error) => {
+            this.store.dispatch(recoverPasswordFail(error));
+          }
+        );
+    }
+  }
 
-    setTimeout(() => {
+  private async onIsRecoveredPassword(loginState: LoginState) {
+    if (!loginState.isRecoveredPassword) {
       this.store.dispatch(hide());
-    }, 3000);
+      const toaster = await this.toastController.create({
+        message: 'Recovery email sent',
+        duration: 2000,
+        color: 'primary',
+      });
+      toaster.present();
+      this.store.dispatch(recoverPasswordSuccess());
+    }
+  }
+
+  forgotEmailPassword() {
+    this.store.select('login').subscribe((loginState) => {
+      this.onIsRecoveringPassword(loginState);
+      this.onIsRecoveredPassword(loginState);
+    });
   }
 
   login() {
