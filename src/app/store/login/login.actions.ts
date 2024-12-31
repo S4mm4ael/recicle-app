@@ -14,5 +14,13 @@ const recoverPasswordFail = createAction(
 
 const login = createAction('[Login]');
 const loginSuccess = createAction('[Login] Success', props<{ user: User }>());
+const loginFail = createAction('[Login] Fail', props<{ error: any }>());
 
-export { recoverPassword, recoverPasswordSuccess, recoverPasswordFail };
+export {
+  recoverPassword,
+  recoverPasswordSuccess,
+  recoverPasswordFail,
+  login,
+  loginSuccess,
+  loginFail,
+};
