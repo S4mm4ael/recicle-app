@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import type { User } from '../../model/user/User';
 
 const recoverPassword = createAction('[Recover Password] Recover Password');
 
