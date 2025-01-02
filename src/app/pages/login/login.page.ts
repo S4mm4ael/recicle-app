@@ -45,6 +45,7 @@ export class LoginPage implements OnInit {
         this.onIsRecoveredPasswordFail(loginState);
 
         this.onIsLoggingIn(loginState);
+        this.onIsLoggedIn(loginState);
 
         this.toggleLoading(loginState);
       });
@@ -55,6 +56,12 @@ export class LoginPage implements OnInit {
       this.store.dispatch(show());
     } else {
       this.store.dispatch(hide());
+    }
+  }
+
+  private onIsLoggedIn(loginState: LoginState) {
+    if (loginState.isLoggedIn) {
+      this.router.navigate(['home']);
     }
   }
 
@@ -130,7 +137,16 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.router.navigate(['home']);
+    const email = this.form.get('email')?.value;
+    const password = this.form.get('password')?.value;
+    const user = {
+      id: 1,
+      email,
+      password,
+      name: 'John',
+      surname: 'Doe',
+    };
+    this.store.dispatch(loginSuccess({ user }));
   }
 
   register() {
