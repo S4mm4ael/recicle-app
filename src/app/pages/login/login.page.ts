@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AppState } from 'src/app/store/AppState';
 import { Store } from '@ngrx/store';
 import {
+  loginSuccess,
   recoverPassword,
   recoverPasswordFail,
   recoverPasswordSuccess,
@@ -43,6 +44,8 @@ export class LoginPage implements OnInit {
         this.onIsRecoveringPassword(loginState);
         this.onIsRecoveredPasswordFail(loginState);
 
+        this.onIsLoggingIn(loginState);
+
         this.toggleLoading(loginState);
       });
   }
@@ -52,6 +55,28 @@ export class LoginPage implements OnInit {
       this.store.dispatch(show());
     } else {
       this.store.dispatch(hide());
+    }
+  }
+
+  private onIsLoggingIn(loginState: LoginState) {
+    if (loginState.isLoggingIn) {
+      const email = this.form.get('email')?.value;
+      const password = this.form.get('password')?.value;
+      const user = {
+        id: 1,
+        email,
+        password,
+        name: 'John',
+        surname: 'Doe',
+      };
+      this.authService.login(email, password).subscribe(
+        () => {
+          this.store.dispatch(loginSuccess({ user }));
+        },
+        (error) => {
+          this.store.dispatch(recoverPasswordFail(error));
+        }
+      );
     }
   }
 

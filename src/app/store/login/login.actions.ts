@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import type { User } from '../../model/user/User';
+import type { UserType } from '../../model/user/User';
 
 const recoverPassword = createAction('[Recover Password] Recover Password');
 
@@ -13,7 +13,10 @@ const recoverPasswordFail = createAction(
 );
 
 const login = createAction('[Login]');
-const loginSuccess = createAction('[Login] Success', props<{ user: User }>());
+const loginSuccess = createAction(
+  '[Login] Success',
+  props<{ user: UserType }>()
+);
 const loginFail = createAction('[Login] Fail', props<{ error: any }>());
 
 export {
