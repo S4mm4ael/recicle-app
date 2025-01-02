@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './guards/auth/auth-guard';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -14,23 +15,37 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () =>
+      import('./pages/register/register.module').then(
+        (m) => m.RegisterPageModule
+      ),
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'pick-up-call',
-    loadChildren: () => import('./pages/pick-up-call/pick-up-call.module').then( m => m.PickUpCallPageModule)
+    loadChildren: () =>
+      import('./pages/pick-up-call/pick-up-call.module').then(
+        (m) => m.PickUpCallPageModule
+      ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'pick-up-calls',
-    loadChildren: () => import('./pages/pick-up-calls/pick-up-calls.module').then( m => m.PickUpCallsPageModule)
+    loadChildren: () =>
+      import('./pages/pick-up-calls/pick-up-calls.module').then(
+        (m) => m.PickUpCallsPageModule
+      ),
+    canLoad: [AuthGuard],
   },
 ];
 
