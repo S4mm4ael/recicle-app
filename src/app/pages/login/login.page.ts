@@ -5,6 +5,7 @@ import { AppState } from 'src/app/store/AppState';
 import { Store } from '@ngrx/store';
 import {
   loginSuccess,
+  login,
   recoverPassword,
   recoverPasswordFail,
   recoverPasswordSuccess,
@@ -130,23 +131,11 @@ export class LoginPage implements OnInit {
   }
 
   forgotEmailPassword() {
-    this.store.select('login').subscribe((loginState) => {
-      this.onIsRecoveringPassword(loginState);
-      this.onIsRecoveredPassword(loginState);
-    });
+    this.store.dispatch(recoverPassword());
   }
 
   login() {
-    const email = this.form.get('email')?.value;
-    const password = this.form.get('password')?.value;
-    const user = {
-      id: 1,
-      email,
-      password,
-      name: 'John',
-      surname: 'Doe',
-    };
-    this.store.dispatch(loginSuccess({ user }));
+    this.store.dispatch(login());
   }
 
   register() {
