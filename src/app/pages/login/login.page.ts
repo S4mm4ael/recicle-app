@@ -20,6 +20,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoginPage implements OnInit {
   form!: FormGroup;
+  loginStateSubscription: any;
 
   constructor(
     private router: Router,
@@ -28,11 +29,30 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private authService: AuthService
   ) {}
+
   ngOnInit() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+
+    this.loginStateSubscription = this.store
+      .select('login')
+      .subscribe((loginState) => {
+        this.onIsRecoveredPassword(loginState);
+        this.onIsRecoveringPassword(loginState);
+        this.onIsRecoveredPasswordFail(loginState);
+
+        this.toggleLoading(loginState);
+      });
+  }
+
+  private toggleLoading(loginState: LoginState) {
+    if (loginState.isLoggingIn || loginState.isRecoveringPassword) {
+      this.store.dispatch(show());
+    } else {
+      this.store.dispatch(hide());
+    }
   }
 
   private onIsRecoveringPassword(loginState: LoginState) {
@@ -61,6 +81,19 @@ export class LoginPage implements OnInit {
       });
       toaster.present();
       this.store.dispatch(recoverPasswordSuccess());
+    }
+  }
+
+  private async onIsRecoveredPasswordFail(loginState: LoginState) {
+    if (loginState.error) {
+      this.store.dispatch(hide());
+      const toaster = await this.toastController.create({
+        message: loginState.error,
+        duration: 2000,
+        color: 'danger',
+      });
+      toaster.present();
+      this.store.dispatch(recoverPasswordFail({ error: loginState.error }));
     }
   }
 
