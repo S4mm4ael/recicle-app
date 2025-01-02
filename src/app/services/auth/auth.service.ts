@@ -20,7 +20,7 @@ export class AuthService {
     });
   }
 
-  login(email: string, password: string): Observable<void> {
+  login(email: string, password: string): Observable<{ user: User }> {
     return new Observable((observer) => {
       setTimeout(() => {
         if (email === 'error@email.com') {

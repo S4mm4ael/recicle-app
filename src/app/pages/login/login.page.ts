@@ -136,7 +136,9 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.store.dispatch(login());
+    const email = this.form.get('email')?.value;
+    const password = this.form.get('password')?.value;
+    this.store.dispatch(login({ email, password }));
   }
 
   register() {

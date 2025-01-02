@@ -15,7 +15,10 @@ const recoverPasswordFail = createAction(
   props<{ error: any }>()
 );
 
-const login = createAction('[Login]');
+const login = createAction(
+  '[Login]',
+  props<{ email: string; password: string }>()
+);
 const loginSuccess = createAction(
   '[Login] Success',
   props<{ user: UserType }>()
