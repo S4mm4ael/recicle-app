@@ -142,6 +142,7 @@ export class LoginPage implements OnInit {
   }
 
   register() {
+    console.log('register');
     this.router.navigate(['register']);
   }
 }

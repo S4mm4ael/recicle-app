@@ -34,16 +34,18 @@
           <ion-button
             color="success"
             expand="block"
+            routerLink="/home"
             size="full"
             (click)="login()"
             disabled="{{!form.valid}}">Login</ion-button>
           <ion-button
             color="success"
             expand="block"
+            routerLink="/register"
             size="full"
             fill="clear"
             (click)="register()"
-            disabled="!form.get('email').valid">Register</ion-button>
+            >Register</ion-button>
         </ion-card-content>
       </ion-card>
     </form>
