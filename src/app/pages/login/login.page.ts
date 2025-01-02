@@ -131,7 +131,8 @@ export class LoginPage implements OnInit {
   }
 
   forgotEmailPassword() {
-    this.store.dispatch(recoverPassword());
+    const email = this.form.get('email')?.value;
+    this.store.dispatch(recoverPassword({ email }));
   }
 
   login() {
