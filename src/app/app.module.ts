@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppStoreModule } from './store/AppStoreModule';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, LoadingComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    ReactiveFormsModule,
     AppRoutingModule,
     ...AppStoreModule,
     StoreDevtoolsModule.instrument({
