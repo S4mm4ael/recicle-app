@@ -1,22 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user/User';
+import { Auth, sendPasswordResetEmail } from '@angular/fire/auth';
+import { RegisterStateType } from 'src/app/model/user/UserRegister';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  constructor(private auth: Auth) {}
+
+  register(userRegister: RegisterStateType): Observable<void> {
+    return new Observable((observer) => {
+      // Simulate registration logic
+      setTimeout(() => {
+        observer.next();
+        observer.complete();
+      }, 1000);
+    });
+  }
 
   recoverEmailPassword(email: string): Observable<void> {
     return new Observable((observer) => {
-      setTimeout(() => {
-        if (email == 'error@email.com') {
-          observer.error('Invalid email');
-        }
-        observer.next();
-        observer.complete();
-      }, 2000);
+      sendPasswordResetEmail(this.auth, email)
+        .then(() => {
+          observer.next();
+          observer.complete();
+        })
+        .catch((error) => {
+          observer.error(error);
+          observer.complete();
+        });
     });
   }
 
