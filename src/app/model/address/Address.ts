@@ -4,6 +4,7 @@ export type AddressType = {
   neighborhood: string;
   city: string;
   complement: string;
+  zipCode: string;
 };
 
 export class Address implements AddressType {
@@ -12,6 +13,7 @@ export class Address implements AddressType {
   neighborhood: string;
   city: string;
   complement: string;
+  zipCode: string;
 
   constructor() {
     this.addrress = '';
@@ -19,5 +21,6 @@ export class Address implements AddressType {
     this.neighborhood = '';
     this.city = '';
     this.complement = '';
+    this.zipCode = '';
   }
 }
