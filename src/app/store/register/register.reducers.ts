@@ -1,7 +1,7 @@
 import { AppInitialState } from '../AppInitialState';
 import { RegisterState } from './RegisterState';
 import { Action, createReducer, on } from '@ngrx/store';
-import { register } from './register.actions';
+import { register, registerFailure, registerSuccess } from './register.actions';
 
 const initialState = AppInitialState.register;
 const reducer = createReducer(
@@ -12,6 +12,20 @@ const reducer = createReducer(
       isRegistering: true,
       isRegistered: false,
       error: null,
+    };
+  }),
+  on(registerSuccess, (state) => {
+    return {
+      ...state,
+      isRegistering: false,
+      isRegistered: true,
+    };
+  }),
+  on(registerFailure, (state) => {
+    return {
+      ...state,
+      isRegistering: false,
+      isRegistered: false,
     };
   })
 );

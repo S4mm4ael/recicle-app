@@ -8,6 +8,7 @@ export const AppStoreModule = [
   StoreModule.forRoot([]),
   StoreModule.forFeature('loading', loadingReducer),
   StoreModule.forFeature('login', loginReducer),
+  StoreModule.forFeature('register', []),
   EffectsModule.forRoot([]),
   EffectsModule.forFeature([LoginEffects]),
 ];
