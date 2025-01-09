@@ -5,7 +5,6 @@ export type RegisterStateType = {
   email: string;
   password: string;
   phone: string;
-
   adress: AddressType;
 };
 
