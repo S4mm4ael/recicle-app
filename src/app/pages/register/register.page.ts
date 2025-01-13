@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { register } from 'src/app/store/register/register.actions';
 import { RegisterStateType } from 'src/app/store/register/RegisterState';
 import { show } from 'src/app/store/loading/loading.actions';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -45,6 +47,22 @@ export class RegisterPage implements OnInit {
   private watchRegisterState() {
     this.store.select('register').subscribe((state) => {
       this.toggleLoading(state);
+
+      if (state.isRegistered) {
+        this.router.navigate(['/home']);
+      }
+
+      if (state.error) {
+        this.toastController
+          .create({
+            message: state.error.error.message,
+            duration: 3000,
+            header: 'Registration Error',
+          })
+          .then((toast) => {
+            toast.present();
+          });
+      }
     });
   }
 
