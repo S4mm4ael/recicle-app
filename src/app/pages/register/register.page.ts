@@ -52,18 +52,22 @@ export class RegisterPage implements OnInit {
         this.router.navigate(['/home']);
       }
 
-      if (state.error) {
-        this.toastController
-          .create({
-            message: state.error.error.message,
-            duration: 3000,
-            header: 'Registration Error',
-          })
-          .then((toast) => {
-            toast.present();
-          });
-      }
+      this.onError(state);
     });
+  }
+
+  private onError(state: RegisterStateType) {
+    if (state.error) {
+      this.toastController
+        .create({
+          message: state.error.error.message,
+          duration: 3000,
+          header: 'Registration Error',
+        })
+        .then((toast) => {
+          toast.present();
+        });
+    }
   }
 
   private toggleLoading(state: RegisterStateType) {
