@@ -14,6 +14,7 @@ import { show, hide } from 'src/app/store/loading/loading.actions';
 import { ToastController } from '@ionic/angular';
 import { LoginState } from 'src/app/store/login/LoginState';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private store: Store<AppState>,
     private toastController: ToastController,
-    private authService: AuthService
+    private authService: AuthService,
+    private navController: NavController
   ) {}
 
   ngOnInit() {
@@ -62,7 +64,7 @@ export class LoginPage implements OnInit {
 
   private onIsLoggedIn(loginState: LoginState) {
     if (loginState.isLoggedIn) {
-      this.router.navigate(['home']);
+      this.navController.navigateRoot('home');
     }
   }
 
