@@ -9,6 +9,7 @@ import { hide, show } from 'src/app/store/loading/loading.actions';
 import { ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationService } from 'src/app/services/location/location.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterPage implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private store: Store<AppState>,
     private toastController: ToastController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private locationService: LocationService
   ) {}
 
   ngOnInit() {
@@ -91,13 +93,11 @@ export class RegisterPage implements OnInit, OnDestroy {
   private fillUserAddressWithUserUrrentLocation() {
     this.geolocation
       .getCurrentPosition()
-      .then((resp) => {
-        console.log(resp);
-        this.registerForm
-          .getForm()
-          .get('address')
-          ?.setValue(`${resp.coords.latitude}, ${resp.coords.longitude}`);
-      })
+      .then((position) =>
+        this.locationService.geocode(position.coords).subscribe((result) => {
+          // this.registerForm.setAddress(result); //TODO: Implement this method
+        })
+      )
       .catch((error) => {
         console.log('Error getting location', error);
       });
