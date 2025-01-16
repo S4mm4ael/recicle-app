@@ -8,7 +8,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppStoreModule } from './store/AppStoreModule';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { LoadingComponent } from './components/loading/loading.component';
+
+import { environment } from '../environments/environment';
+import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
   declarations: [AppComponent, LoadingComponent],
@@ -20,8 +25,13 @@ import { LoadingComponent } from './components/loading/loading.component';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AuthService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

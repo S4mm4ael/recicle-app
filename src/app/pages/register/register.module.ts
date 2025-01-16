@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -17,5 +18,6 @@ import { RegisterPage } from './register.page';
     ReactiveFormsModule,
   ],
   declarations: [RegisterPage],
+  providers: [Geolocation],
 })
 export class RegisterPageModule {}

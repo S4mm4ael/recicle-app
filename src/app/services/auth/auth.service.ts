@@ -12,7 +12,6 @@ export class AuthService {
 
   register(userRegister: RegisterStateType): Observable<void> {
     return new Observable((observer) => {
-      // Simulate registration logic
       setTimeout(() => {
         observer.next();
         observer.complete();
